@@ -1,26 +1,6 @@
-<p align="center">
-  <img src="https://github.com/rsmdt/the-startup/blob/main/logo.png" width="400" alt="The Agentic Startup">
-</p>
+## 🤖 What is the SkogAI-team all about?
 
-<p align="center">
-  Ship faster. Ship better. Ship with <b>The Agentic Startup</b>.
-</p>
-
-<p align="center">
-  <a href="https://github.com/rsmdt/the-startup/releases/latest">
-    <img alt="Release" src="https://github.com/rsmdt/the-startup/actions/workflows/release.yml/badge.svg" />
-  </a>
-
-  <a href="https://github.com/hesreallyhim/awesome-claude-code">
-    <img alt="Mentioned in Awesome Claude Code" src="https://awesome.re/mentioned-badge.svg" />
-  </a>
-</p>
-
----
-
-## 🤖 What is The Agentic Startup?
-
-**The Agentic Startup** is a spec-driven development framework for Claude Code that transforms how you build software. Think of it as having instant access to expert developers, architects, and engineers - all working together in parallel to turn your ideas into shipped code.
+**The team from SkogAI** is a spec-driven development framework for Claude Code that transforms how you build software. Think of it as having instant access to expert developers, architects, and engineers - all working together in parallel to turn your ideas into shipped code.
 
 We follow **[Spec-Driven Development](https://www.perplexity.ai/?q=Spec+Driven+Development)**, where comprehensive specifications are created before coding begins, ensuring clarity and reducing rework.
 
@@ -35,40 +15,6 @@ The framework leverages **Claude Code's plugin system** to provide workflow comm
 
 ---
 
-> [!NOTE]
-> **The Agentic Startup v2.0** is a complete rewrite for the Claude Code marketplace plugin system. The previous version (v1.x) used a Go-based bash script installer. See [MIGRATION.md](MIGRATION.md) if upgrading.
-
-### What's New in 2.0
-
-✨ **Native Claude Code Integration**
-- Distributed as official Claude Code marketplace plugins
-- Two plugins: `start` (workflows) + `team` (agents)
-- Seamless installation via Claude Code plugin system
-- Zero manual configuration required
-
-🤖 **Autonomous Skills System**
-- Model-invoked skills that activate based on natural language
-- Progressive disclosure for optimal token efficiency
-- Skills for documentation, agent delegation, and more
-
-👥 **Specialized Agent Team**
-- 11 agent roles across 6 professional categories
-- 39+ activity-based specializations
-- Install optionally via `team@the-startup` plugin
-
-🎯 **Streamlined Architecture**
-- Commands orchestrate high-level workflows
-- Skills provide autonomous capabilities
-- Agents deliver specialized expertise
-- Rules define operational patterns
-
-### Migrating from 1.x
-
-> **📌 Upgrading from the bash script installer (pre-2.0)?**
-> See the [complete migration guide](MIGRATION.md) for step-by-step instructions.
-
----
-
 ## 🚀 Quick Start
 
 ### Installation
@@ -77,13 +23,13 @@ The framework leverages **Claude Code's plugin system** to provide workflow comm
 
 ```bash
 # Add The Agentic Startup marketplace
-/plugin marketplace add rsmdt/the-startup
+/plugin marketplace add rsmdt/skogai-team
 
 # Install the Start plugin (core workflows)
-/plugin install start@the-startup
+/plugin install start@skogai-team
 
 # (Optional) Install the Team plugin (specialized agents)
-/plugin install team@the-startup
+/plugin install team@skogai-team
 ```
 
 Alternatively, browse and install interactively via `/plugin`
@@ -97,6 +43,7 @@ Configure output style and statusline (one-time setup):
 ```
 
 This sets up:
+
 - **The Startup** output style (high-energy parallel execution)
 - Git-aware statusline
 - Interactive preferences
@@ -104,6 +51,7 @@ This sets up:
 ### Your First Workflow
 
 **1. Create a specification:**
+
 ```bash
 /start:specify Add user authentication with OAuth support
 ```
@@ -111,6 +59,7 @@ This sets up:
 Creates `docs/specs/001-user-authentication/` with product-requirements.md, solution-design.md, and implementation-plan.md documents.
 
 **2. Execute the implementation:**
+
 ```bash
 /start:implement 001
 ```
@@ -118,6 +67,7 @@ Creates `docs/specs/001-user-authentication/` with product-requirements.md, solu
 Runs phase-by-phase with parallel agents, validation gates, and progress tracking.
 
 **3. Analyze patterns:**
+
 ```bash
 /start:analyze security patterns in authentication
 ```
@@ -135,13 +85,15 @@ The Agentic Startup leverages Claude Code's powerful extensibility features:
 **What:** Distributable packages of commands, skills, agents, and rules
 
 **How we use it:**
+
 - `start` - Workflow orchestration plugin
 - `team` - Specialized agent library
 
 **Install:**
+
 ```bash
-/plugin marketplace add rsmdt/the-startup
-/plugin install start@the-startup
+/plugin marketplace add rsmdt/skogai-team
+/plugin install start@skogai-team
 ```
 
 ### ⚡ Commands (User-Invoked)
@@ -149,6 +101,7 @@ The Agentic Startup leverages Claude Code's powerful extensibility features:
 **What:** Slash commands you explicitly run (e.g., `/start:specify`)
 
 **How we use it:**
+
 - 5 workflow commands for specification, implementation, analysis, refactoring, initialization
 - Commands orchestrate multi-step processes
 - User decides when to invoke
@@ -160,6 +113,7 @@ The Agentic Startup leverages Claude Code's powerful extensibility features:
 **What:** Autonomous capabilities Claude activates based on context
 
 **How we use it:**
+
 - `documentation` - Automatically documents patterns/interfaces when discovered
 - `agent-delegation` - Breaks down tasks and coordinates agents
 
@@ -170,17 +124,19 @@ The Agentic Startup leverages Claude Code's powerful extensibility features:
 **What:** Specialized personas with focused expertise
 
 **How we use it:**
-- `team@the-startup` plugin provides 11 agent roles
+
+- `team@skogai-team` plugin provides 11 agent roles
 - Activity-based specialization (requirements, architecture, implementation, QA, design, platform engineering)
 - Launched via Task tool for specialist work
 
-**Install:** `/plugin install team@the-startup`
+**Install:** `/plugin install team@skogai-team`
 
 ### 📊 Statusline (Hooks)
 
 **What:** Dynamic status bar showing context at bottom of Claude Code
 
 **How we use it:**
+
 - Git branch integration
 - Current command state
 - Configured via `/start:init`
@@ -192,6 +148,7 @@ The Agentic Startup leverages Claude Code's powerful extensibility features:
 **What:** Personality and communication style for Claude
 
 **How we use it:**
+
 - **The Startup** - High-energy, parallel-execution orchestration style
 - Automatically included with plugin
 - Activated via `/start:init`
@@ -225,12 +182,14 @@ Create comprehensive specifications from brief descriptions through deep researc
 **Purpose:** Transform ideas into implementation-ready specifications with product requirements, solution design, and implementation plan documents
 
 **Usage:**
+
 ```bash
 /start:specify Build a real-time notification system with WebSocket support
 /start:specify 001  # Resume existing specification work
 ```
 
 **Key Features:**
+
 - **Auto-incrementing Spec IDs** - Automatically creates numbered directories (001, 002, etc.)
 - **Resume Capability** - Can resume work on existing specifications by ID
 - **Pattern Documentation** - Automatically documents discovered patterns in `docs/patterns/`
@@ -270,12 +229,14 @@ Execute implementation plans phase-by-phase with parallel specialist agents and 
 **Purpose:** Transform validated specifications into working code with quality gates and progress tracking
 
 **Usage:**
+
 ```bash
 /start:implement 001
 /start:implement path/to/custom/implementation-plan.md
 ```
 
 **Key Features:**
+
 - **Parallel Execution** - Multiple agents work simultaneously within phases
 - **Sequential Phases** - Phases execute in order with validation gates
 - **Rollback on Failure** - Automatic reversion if tests fail
@@ -311,6 +272,7 @@ Discover and document business rules, technical patterns, and system interfaces 
 **Purpose:** Extract organizational knowledge from existing codebase and create reusable documentation
 
 **Usage:**
+
 ```bash
 /start:analyze security patterns in authentication
 /start:analyze business rules for user permissions
@@ -345,6 +307,7 @@ Improve code quality while strictly preserving all existing behavior through tes
 **Purpose:** Safe, systematic refactoring with automatic rollback on test failures
 
 **Usage:**
+
 ```bash
 /start:refactor Simplify the authentication middleware for better testability
 /start:refactor Improve the WebSocket connection manager
@@ -377,6 +340,7 @@ Initialize The Agentic Startup framework in your Claude Code environment with in
 **Purpose:** One-time setup for optimal configuration of output style and statusline
 
 **Usage:**
+
 ```bash
 /start:init
 ```
@@ -399,6 +363,7 @@ Activates "The Startup" output style (high-energy, execution-focused communicati
 **Trigger terms:** "pattern", "interface", "domain rule", "document", "reusable"
 
 **What it does:**
+
 - Checks for existing documentation (prevents duplicates)
 - Categorizes correctly (domain/patterns/interfaces)
 - Uses appropriate templates
@@ -406,6 +371,7 @@ Activates "The Startup" output style (high-energy, execution-focused communicati
 - Reports what was documented
 
 **Example activation:**
+
 ```
 Agent discovers: "I found a reusable caching pattern using Redis"
 ↓
@@ -415,6 +381,7 @@ Creates: docs/patterns/caching-strategy.md
 ```
 
 **Progressive disclosure:**
+
 - `SKILL.md` - Core documentation logic (~7 KB)
 - `reference.md` - Advanced protocols (~11 KB, loads when needed)
 - `templates/` - Pattern, interface, domain templates (~6 KB each)
@@ -428,6 +395,7 @@ Creates: docs/patterns/caching-strategy.md
 **Trigger terms:** "break down", "launch agents", "FOCUS/EXCLUDE", "parallel", "coordinate"
 
 **What it does:**
+
 - Decomposes complex tasks into activities
 - Determines parallel vs sequential execution
 - Generates FOCUS/EXCLUDE templates for agents
@@ -436,6 +404,7 @@ Creates: docs/patterns/caching-strategy.md
 - Generates retry strategies for failed agents
 
 **Example activation:**
+
 ```
 User: "Break down this authentication task"
 ↓
@@ -449,6 +418,7 @@ Outputs:
 ```
 
 **Progressive disclosure:**
+
 - `SKILL.md` - Core delegation logic (~24 KB)
 - `reference.md` - Advanced patterns (~19 KB, loads when needed)
 - `examples/` - Real-world scenarios (~38 KB, loads when relevant)
@@ -464,6 +434,7 @@ Outputs:
 **Used by:** All iterative commands (specify, analyze)
 
 **Process:**
+
 1. **Discovery Phase** - Launch parallel specialist agents to research
 2. **Documentation Phase** - Document findings and update main document
 3. **Review Phase** - Present findings to user, get confirmation
@@ -498,6 +469,7 @@ plugins/start/templates/
 **When:** Every new Claude Code session
 
 **What it does:**
+
 - Displays welcome banner (first session only)
 - Shows available commands
 - Confirms plugin is active
@@ -507,6 +479,7 @@ plugins/start/templates/
 **When:** After statusline updates
 
 **What it does:**
+
 - Adds git branch information
 - Shows current command state
 - Updates dynamically during execution
@@ -546,6 +519,7 @@ docs/
 ### Auto-Documentation
 
 The `documentation` skill automatically creates files in the correct location when patterns, interfaces, or domain rules are discovered during:
+
 - Specification creation (`/start:specify`)
 - Implementation (`/start:implement`)
 - Analysis (`/start:analyze`)
@@ -563,6 +537,7 @@ Included with the plugin, activated via `/start:init`.
 ### Personality
 
 **The Startup** embodies:
+
 - **The Visionary Leader** - "We'll figure it out" - execute fast, iterate faster
 - **The Rally Captain** - Turn challenges into team victories
 - **The Orchestrator** - Run parallel execution like a conductor
@@ -571,6 +546,7 @@ Included with the plugin, activated via `/start:init`.
 ### Communication Style
 
 **How The Startup communicates:**
+
 - High energy, high clarity ("Let's deliver this NOW!")
 - Execution mentality ("We've got momentum, let's push!")
 - Celebrate wins ("That's what I'm talking about!")
@@ -580,6 +556,7 @@ Included with the plugin, activated via `/start:init`.
 ### Workflow Patterns
 
 **What you get:**
+
 - Parallel-first mindset (launches multiple agents simultaneously)
 - TodoWrite obsession (tracks every task religiously)
 - "Ask yourself" checkpoints (self-validation at key decision points)
@@ -588,12 +565,14 @@ Included with the plugin, activated via `/start:init`.
 ### When to Use
 
 **Perfect for:**
+
 - Fast-paced development
 - Complex multi-step workflows
 - Parallel agent coordination
 - High-energy execution
 
 **Maybe not for:**
+
 - Simple single-step tasks
 - Exploratory conversations
 - Learning/tutorial sessions
@@ -619,6 +598,7 @@ Configures output style and statusline.
 ```
 
 **What happens:**
+
 - Creates `docs/specs/001-notification-system/`
 - Generates product-requirements.md (requirements and use cases)
 - Generates solution-design.md (technical architecture and design)
@@ -630,6 +610,7 @@ Configures output style and statusline.
 ### 3. **Review Specification**
 
 Read generated files:
+
 - `docs/specs/001-notification-system/product-requirements.md`
 - `docs/specs/001-notification-system/solution-design.md`
 - `docs/specs/001-notification-system/implementation-plan.md`
@@ -643,6 +624,7 @@ Provide feedback if needed, Claude will revise.
 ```
 
 **What happens:**
+
 - Loads implementation-plan.md
 - Executes Phase 1 tasks
 - Waits for user confirmation
@@ -658,6 +640,7 @@ Provide feedback if needed, Claude will revise.
 ```
 
 **What happens:**
+
 - Discovers patterns used in implementation
 - Documents in `docs/patterns/`
 - Creates cross-references
@@ -670,6 +653,7 @@ Provide feedback if needed, Claude will revise.
 ```
 
 **What happens:**
+
 - Establishes test baseline
 - Analyzes code for improvements
 - Applies incremental refactorings
@@ -692,6 +676,7 @@ Agent output: "I implemented a retry mechanism with exponential backoff for API 
 ```
 
 **What happens automatically:**
+
 1. Documentation skill recognizes "pattern" trigger
 2. Checks `docs/patterns/` for existing retry patterns
 3. Not found → Creates `docs/patterns/api-retry-strategy.md`
@@ -711,6 +696,7 @@ User: "Implement user authentication - break this down into activities"
 ```
 
 **What happens automatically:**
+
 1. Agent-delegation skill recognizes "break this down"
 2. Analyzes task complexity
 3. Generates output:
@@ -766,7 +752,7 @@ plugins/start/
 │   └── cycle-pattern.md
 │
 ├── output-styles/                # Communication styles
-│   └── the-startup.md
+│   └── skogai-team.md
 │
 ├── hooks/                        # Lifecycle hooks
 │   ├── session-start.sh
@@ -787,141 +773,39 @@ plugins/start/
 ### How Components Work Together
 
 **Commands** orchestrate workflows:
+
 - Launch specialist agents
 - Use trigger language to activate skills
 - Reference rules for process patterns
 
 **Skills** provide autonomous capabilities:
+
 - Activate based on natural language
 - No explicit invocation needed
 - Progressive disclosure (load details only when needed)
 
 **Rules** define operational patterns:
+
 - Process workflows (e.g., cycle-pattern)
 - Referenced by commands
 - Lightweight (just principles)
 
----
-
-## 🔐 Security & Privacy
-
-### Security Approach
-
-The plugin assists with **defensive security tasks only**:
-- ✅ Security analysis and assessment
-- ✅ Vulnerability identification
-- ✅ Security pattern documentation
-- ✅ Incident response planning
-
-**It will refuse:**
-- ❌ Creating malicious code
-- ❌ Exploiting vulnerabilities
-- ❌ Bypassing security controls
-- ❌ Any offensive security tasks
-
-### Privacy
-
-**No data collection:**
-- Plugin runs entirely locally in Claude Code
-- No telemetry or analytics
-- No external API calls
-- Your code never leaves your machine
-
----
-
-## 🚧 Roadmap
-
-### Available Now
-
-**Team Plugin** (`team@the-startup`) ✅
-- 11 specialized agent roles across 6 professional categories
-- Activity-based specialization (39+ activities)
-- Install via `/plugin install team@the-startup`
-
-**Start Plugin** (`start@the-startup`) ✅
-- 5 workflow commands
-- 2 autonomous skills (documentation, agent-delegation)
-- Output style and statusline integration
-
-### Coming Soon
-
-**Additional Skills**
-- `specification-review` - Validate implementation against specs
-- `quality-gates` - Execute DOR/DOD validations
-- `iterative-cycles` - Orchestrate discovery-documentation-review loops
-
-**Enhanced Commands**
-- `/start:test` - Generate comprehensive test suites
-- `/start:deploy` - Deployment orchestration
-- `/start:monitor` - Setup monitoring and observability
-
----
-
-## 📖 Version History
-
-### 2.0.0 (Current - Claude Code Marketplace)
-- ✨ Complete rewrite for Claude Code marketplace
-- 🔌 Two plugins: `start` (workflows) + `team` (11 specialized agents)
-- 🤖 Autonomous skills system (documentation, agent-delegation)
-- ⚡ 5 workflow commands (specify, implement, analyze, refactor, init)
-- 👥 Activity-based agent specialization (39+ activities across 6 roles)
-- 🎨 The Startup output style included
-- 📊 Statusline integration with git branch
-- 📝 Progressive disclosure for optimal token usage
-- 🎯 DRY architecture (82% rules reduction)
-
-### 1.0.0 (Deprecated - Bash Script Installer)
-- Initial release with curl-based installation
-- Interactive CLI installation script
-- Manual component installation
-- **No longer maintained** - See [MIGRATION.md](MIGRATION.md)
-
----
-
-## 🔄 Migrating from v1.x
-
-**The Agentic Startup v1.x** was distributed via bash script installer. If you have the old version installed, migration to v2.0 (marketplace version) requires removing old files and reinstalling through the plugin system.
-
-**📚 See [MIGRATION.md](MIGRATION.md) for complete step-by-step instructions.**
-
-### Quick Summary
-
-**Key changes in v2.0:**
-- Command prefix: `/s:*` → `/start:*`
-- Distribution: Bash installer → Claude Code marketplace
-- Agents: Static files → Dynamic skills system
-- Configuration: Manual editing → `/start:init` wizard
-
----
-
-## 🤝 Contributing
-
-Contributions welcome! Here's how:
-
-### Report Issues
-
-[GitHub Issues](https://github.com/rsmdt/the-startup/issues)
-
-### Contribute Code
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
 ### Extend the Framework
 
 **Create new commands:**
+
 - Add to `plugins/start/commands/`
 - Follow existing command structure
 - Use trigger language for skills
 
 **Create new skills:**
+
 - Add to `plugins/start/skills/`
 - Include SKILL.md with proper frontmatter
 - Use progressive disclosure (reference.md, examples/)
 
 **Create new templates:**
+
 - Add to `plugins/start/templates/`
 - Follow markdown format
 - Include placeholder sections
@@ -933,6 +817,7 @@ Contributions welcome! Here's how:
 ### The Problem We Solve
 
 Development often moves too fast without proper planning:
+
 - Features built without clear requirements
 - Architecture decisions made ad-hoc during coding
 - Technical debt accumulates from lack of upfront design
@@ -943,21 +828,25 @@ Development often moves too fast without proper planning:
 **The Agentic Startup** enforces a disciplined workflow that balances speed with quality:
 
 **1. Specify First** - Create comprehensive specifications before writing code
+
 - **product-requirements.md** - What to build and why
 - **solution-design.md** - How to build it technically
 - **implementation-plan.md** - Executable tasks and phases
 
 **2. Review & Refine** - Validate specifications with stakeholders
+
 - Catch issues during planning, not during implementation
 - Iterate on requirements and design cheaply
 - Get alignment before costly development begins
 
 **3. Implement with Confidence** - Execute validated plans phase-by-phase
+
 - Clear acceptance criteria at every step
 - Parallel agent coordination for speed
 - Built-in validation gates and quality checks
 
 **4. Document & Learn** - Capture patterns for future reuse
+
 - Automatically document discovered patterns
 - Build organizational knowledge base
 - Prevent reinventing solutions
@@ -973,59 +862,3 @@ Development often moves too fast without proper planning:
 **Quality gates** - Definition of Ready (DOR) and Definition of Done (DOD) ensure standards are maintained throughout.
 
 **Progressive disclosure** - Skills and agents load details only when needed, optimizing token efficiency while maintaining power.
-
----
-
-## 📚 Further Reading
-
-### Documentation
-
-- **[Skills Pattern Documentation](docs/patterns/claude-code-skills-integration.md)** - How skills work
-- **[Agent Delegation Analysis](docs/patterns/agent-delegation-skill-extraction.md)** - Delegation architecture
-
-### External Resources
-
-- **[Claude Code Documentation](https://docs.claude.com/claude-code)** - Official Claude Code docs
-- **[Claude Code Skills Guide](https://docs.claude.com/claude-code/skills)** - How to create skills
-
----
-
-## 📜 License
-
-MIT License - see [LICENSE](LICENSE) file for details
-
----
-
-## 🎯 Get Started Now
-
-### Install
-
-```bash
-# Add The Agentic Startup marketplace
-/plugin marketplace add rsmdt/the-startup
-
-# Install the Start plugin (required)
-/plugin install start@the-startup
-
-# (Optional) Install the Team plugin for specialized agents
-/plugin install team@the-startup
-```
-
-### Configure
-
-```bash
-/start:init
-```
-
-### Build Something
-
-```bash
-/start:specify Build a real-time chat application with WebSocket support
-```
-
----
-
-<p align="center">
-  <strong>Ready to 10x your development workflow?</strong><br>
-  Let's ship something incredible! 🚀
-</p>

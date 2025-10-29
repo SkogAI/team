@@ -54,7 +54,7 @@ Maintain awareness of:
 
 **🎯 Goal**: Establish the specification identity and setup working directory.
 
-Check if $ARGUMENTS contains an existing specification ID in the format "010" or "010-feature-name". If an ID is provided, run `~/.claude/plugins/marketplaces/the-startup/plugins/start/scripts/spec.py [ID] --read` to check for existing work.
+Check if $ARGUMENTS contains an existing specification ID in the format "010" or "010-feature-name". If an ID is provided, run `~/.claude/plugins/marketplaces/skogai-team/plugins/start/scripts/spec.py [ID] --read` to check for existing work.
 
 Parse the TOML output which contains:
 - Specification metadata: `id`, `name`, `dir`
@@ -71,7 +71,7 @@ If the specification directory exists, check which documents exist in the `[spec
 
 Ask the user to confirm the suggested starting point.
 
-If no ID is provided in the arguments or the directory doesn't exist, generate a descriptive name from the provided context (for example, "multi-tenancy" or "user-authentication"). Run `~/.claude/plugins/marketplaces/the-startup/plugins/start/scripts/spec.py [name]` to create a new specification directory. Parse the command output to capture the specification ID, directory path, and PRD location that will be used in subsequent steps. Display "📝 Creating new spec: [directory]" to confirm the creation.
+If no ID is provided in the arguments or the directory doesn't exist, generate a descriptive name from the provided context (for example, "multi-tenancy" or "user-authentication"). Run `~/.claude/plugins/marketplaces/skogai-team/plugins/start/scripts/spec.py [name]` to create a new specification directory. Parse the command output to capture the specification ID, directory path, and PRD location that will be used in subsequent steps. Display "📝 Creating new spec: [directory]" to confirm the creation.
 
 **🤔 Ask yourself before proceeding**:
 1. Have I checked $ARGUMENTS for an existing specification ID?
@@ -86,7 +86,7 @@ If no ID is provided in the arguments or the directory doesn't exist, generate a
 
 **🎯 Goal**: Complete PRD focusing on WHAT needs to be built and WHY it matters.
 
-**🔄 Context Priming**: First, check if the PRD already exists in the specification directory. If it exists, read the ENTIRE file completely to understand what has been documented, what questions remain, and where to continue. This primes your context for resuming work. If the PRD doesn't exist, run `~/.claude/plugins/marketplaces/the-startup/plugins/start/scripts/spec.py [ID] --add product-requirements` to generate it from the template.
+**🔄 Context Priming**: First, check if the PRD already exists in the specification directory. If it exists, read the ENTIRE file completely to understand what has been documented, what questions remain, and where to continue. This primes your context for resuming work. If the PRD doesn't exist, run `~/.claude/plugins/marketplaces/skogai-team/plugins/start/scripts/spec.py [ID] --add product-requirements` to generate it from the template.
 
 Once the PRD is loaded or created, thoroughly read the entire document to understand its structure, required sections, and identify all sections that require clarification.
 
@@ -132,7 +132,7 @@ Once complete, present a summary of the requirements specification with key deci
 
 **🎯 Goal**: Complete SDD designing HOW the solution will be built through technical architecture and design decisions.
 
-**🔄 Context Priming**: First, check if the SDD already exists in the specification directory. If it exists, read the ENTIRE file completely to understand the current architecture decisions, what technical areas have been explored, and where design work should continue. This primes your context for resuming work. Additionally, read the completed PRD to ensure the technical design aligns with business requirements. If the SDD doesn't exist, run `~/.claude/plugins/marketplaces/the-startup/plugins/start/scripts/spec.py [ID] --add solution-design` to generate it from the template.
+**🔄 Context Priming**: First, check if the SDD already exists in the specification directory. If it exists, read the ENTIRE file completely to understand the current architecture decisions, what technical areas have been explored, and where design work should continue. This primes your context for resuming work. Additionally, read the completed PRD to ensure the technical design aligns with business requirements. If the SDD doesn't exist, run `~/.claude/plugins/marketplaces/skogai-team/plugins/start/scripts/spec.py [ID] --add solution-design` to generate it from the template.
 
 Once the SDD is loaded or created, thoroughly read the entire document to understand its structure, required sections, and identify all technical areas that need investigation. You MUST NEVER perform actual implementation or code changes. Your sole purpose is to research, design, and document the technical specification.
 
@@ -195,7 +195,7 @@ Once complete, present a summary of the technical design with key architectural 
 
 **🎯 Goal**: Complete PLAN developing an actionable plan that breaks down the work into executable tasks.
 
-**🔄 Context Priming**: First, check if the PLAN already exists in the specification directory. If it exists, read the ENTIRE file completely to understand what implementation phases have been planned, what remains to be detailed, and where planning should continue. This primes your context for resuming work. Additionally, read both the completed PRD and SDD to ensure the implementation plan addresses all requirements and follows the technical design. If the PLAN doesn't exist, run `~/.claude/plugins/marketplaces/the-startup/plugins/start/scripts/spec.py [ID] --add implementation-plan` to generate it from the template.
+**🔄 Context Priming**: First, check if the PLAN already exists in the specification directory. If it exists, read the ENTIRE file completely to understand what implementation phases have been planned, what remains to be detailed, and where planning should continue. This primes your context for resuming work. Additionally, read both the completed PRD and SDD to ensure the implementation plan addresses all requirements and follows the technical design. If the PLAN doesn't exist, run `~/.claude/plugins/marketplaces/skogai-team/plugins/start/scripts/spec.py [ID] --add implementation-plan` to generate it from the template.
 
 Once the PLAN is loaded or created, thoroughly read the entire document to understand its structure, required sections, and identify all phases that need detailed planning.
 

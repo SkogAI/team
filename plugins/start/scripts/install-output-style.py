@@ -15,10 +15,10 @@ def main():
     plugin_root = script_dir.parent
 
     # Define all paths at the top
-    source_output_style = plugin_root / 'output-styles' / 'the-startup.md'
+    source_output_style = plugin_root / 'output-styles' / 'skogai-team.md'
     target_dir = Path.home() / '.claude'
     target_output_styles_dir = target_dir / 'output-styles'
-    target_output_style = target_output_styles_dir / 'the-startup.md'
+    target_output_style = target_output_styles_dir / 'skogai-team.md'
     target_settings = target_dir / 'settings.json'
 
     # Handle --check flag
@@ -53,9 +53,9 @@ def main():
     print("✓ Output style installed successfully!\n")
     print(f"Location: {target_output_style}")
     print(f"Configuration: {target_settings}")
-    print("Output Style: the-startup\n")
+    print("Output Style: skogai-team\n")
     print("Changes:")
-    print("• Installed output-styles/the-startup.md")
+    print("• Installed output-styles/skogai-team.md")
     print("• Updated settings.json with outputStyle field\n")
     print("⚠️  Use /output-style command to activate immediately.")
 

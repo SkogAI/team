@@ -127,4 +127,4 @@ The Agentic Startup's philosophy evolves through community usage and feedback. W
 - **Pragmatism over purity** - What ships wins
 - **Community wisdom** - Best practices emerge from collective experience
 
-Share your experiences, patterns, and improvements at [github.com/rsmdt/the-startup](https://github.com/rsmdt/the-startup).
+Share your experiences, patterns, and improvements at [github.com/rsmdt/skogai-team](https://github.com/rsmdt/skogai-team).

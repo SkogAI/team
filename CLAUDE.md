@@ -2,249 +2,561 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Common Commands
+## 🎯 Claude Code Features Explained
 
-### Development Mode (No Build Required)
+The Agentic Startup leverages Claude Code's powerful extensibility features:
 
-Run commands directly from TypeScript source using tsx:
+### 🔌 Plugins (Marketplace)
 
-```bash
-# Run installer in development mode
-npm run dev:install
+**What:** Distributable packages of commands, skills, agents, and rules
 
-# Run other commands
-npm run dev:uninstall
-npm run dev:init
-npm run dev:spec
-npm run dev:spec-bin  # Run standalone spec executable
+**How we use it:**
 
-# Run with custom arguments
-npm run dev:run -- install --yes
-npm run dev:run -- spec "Add user authentication"
-npm run dev:spec-bin -- test-feature --add solution-design
+- `start` - Workflow orchestration plugin
+- `team` - Specialized agent library
 
-# Or use tsx directly
-npx tsx src/index.ts install
-npx tsx src/bin/spec.ts test-feature
-```
-
-### Build and Run
+**Install:**
 
 ```bash
-# Build the project
-npm run build
-
-# Run the built CLI directly
-node dist/index.js install
-node dist/index.js --help
-
-# Or link globally for easier testing (simulates npx behavior)
-npm link
-the-agentic-startup install
-the-agentic-startup spec test-feature
-the-agentic-startup-spec test-feature  # Standalone spec executable
-the-agentic-startup --help
-
-# Unlink when done testing
-npm unlink -g the-agentic-startup
-
-# Watch mode (rebuilds on file changes)
-npm run dev
-# Then in another terminal, run:
-node dist/index.js install
+/plugin marketplace add rsmdt/skogai-team
+/plugin install start@skogai-team
 ```
 
-### Testing
+### ⚡ Commands (User-Invoked)
+
+**What:** Slash commands you explicitly run (e.g., `/start:specify`)
+
+**How we use it:**
+
+- 5 workflow commands for specification, implementation, analysis, refactoring, initialization
+- Commands orchestrate multi-step processes
+- User decides when to invoke
+
+**Example:** `/start:specify Add real-time notifications`
+
+### 🤖 Skills (Model-Invoked)
+
+**What:** Autonomous capabilities Claude activates based on context
+
+**How we use it:**
+
+- `documentation` - Automatically documents patterns/interfaces when discovered
+- `agent-delegation` - Breaks down tasks and coordinates agents
+
+**Activation:** Natural language (e.g., "break down this complex task")
+
+### 👥 Agents (Team Plugin)
+
+**What:** Specialized personas with focused expertise
+
+**How we use it:**
+
+- `team@skogai-team` plugin provides 11 agent roles
+- Activity-based specialization (requirements, architecture, implementation, QA, design, platform engineering)
+- Launched via Task tool for specialist work
+
+**Install:** `/plugin install team@skogai-team`
+
+### 📊 Statusline (Hooks)
+
+**What:** Dynamic status bar showing context at bottom of Claude Code
+
+**How we use it:**
+
+- Git branch integration
+- Current command state
+- Configured via `/start:init`
+
+**Example:** `[main] | /start:specify running...`
+
+### 🎨 Output Style
+
+**What:** Personality and communication style for Claude
+
+**How we use it:**
+
+- **The Startup** - High-energy, parallel-execution orchestration style
+- Automatically included with plugin
+- Activated via `/start:init`
+
+**Style:** Y Combinator energy meets operational excellence
+
+---
+
+## 📋 Commands Reference
+
+Quick reference for all workflow commands. Click command names for detailed documentation.
+
+| Command | Description |
+|---------|-------------|
+| [`/start:init`](#startinit) | Initialize environment (output style, statusline) |
+| [`/start:specify`](#startspecify-description) | Create specification documents from brief description |
+| [`/start:implement`](#startimplement-spec-id) | Execute implementation plan phase-by-phase |
+| [`/start:analyze`](#startanalyze-area) | Discover and document patterns, rules, interfaces |
+| [`/start:refactor`](#startrefactor-description) | Improve code quality while preserving behavior |
+
+---
+
+## 📖 Detailed Command Documentation
+
+### Commands
+
+#### `/start:specify <description>`
+
+Create comprehensive specifications from brief descriptions through deep research and specialist agent coordination.
+
+**Purpose:** Transform ideas into implementation-ready specifications with product requirements, solution design, and implementation plan documents
+
+**Usage:**
+
 ```bash
-# Run all tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run specific test file
-npm test tests/core/installer/Installer.test.ts
-
-# Run tests with UI (if available)
-npm run test:ui
+/start:specify Build a real-time notification system with WebSocket support
+/start:specify 001  # Resume existing specification work
 ```
 
-### Development Workflow
+**Key Features:**
+
+- **Auto-incrementing Spec IDs** - Automatically creates numbered directories (001, 002, etc.)
+- **Resume Capability** - Can resume work on existing specifications by ID
+- **Pattern Documentation** - Automatically documents discovered patterns in `docs/patterns/`
+- **Interface Documentation** - Captures external service contracts in `docs/interfaces/`
+- **Domain Documentation** - Records business rules in `docs/domain/`
+- **Confidence Scoring** - Provides implementation readiness assessment with risk analysis
+- **Quality Gates** - Requires user approval between major phases
+
+<details>
+<summary><strong>View Details</strong></summary>
+
+**What you get:** Three comprehensive documents in `docs/specs/[ID]-[name]/`:
+
+- **product-requirements.md** - User stories, feature specifications, success criteria, non-functional requirements
+- **solution-design.md** - Technical architecture, system components, data models, technology stack, security and performance considerations
+- **implementation-plan.md** - Phased task breakdown, dependencies, acceptance criteria, risk assessment
+
+```mermaid
+flowchart TD
+    A([Your Feature Idea]) --> |initialize| B{Check<br>Existing}
+    B --> |exists| C[Review and Refine]
+    C --> END[🚀 Ready for /start:implement 001]
+    B --> |new| D[📄 **Requirements Gathering**<br/>Create *product-requirements.md* if needed]
+    D --> E[📄 **Technical Research**<br/>Create *solution-design.md* if needed, document patterns, interfaces]
+    E --> F[📄 **Implementation Planning**<br/>Create *implementation-plan.md*]
+    F --> END
+```
+
+</details>
+
+---
+
+#### `/start:implement <spec-id>`
+
+Execute implementation plans phase-by-phase with parallel specialist agents and continuous validation.
+
+**Purpose:** Transform validated specifications into working code with quality gates and progress tracking
+
+**Usage:**
+
 ```bash
-# Format code
-npm run format
-
-# Lint code
-npm run lint
-
-# Type check
-npm run typecheck
-
-# Clean build artifacts
-npm run clean
-
-# Full check (lint + typecheck + test)
-npm run check
+/start:implement 001
+/start:implement path/to/custom/implementation-plan.md
 ```
 
-## Architecture Overview
+**Key Features:**
 
-### Package Structure
+- **Parallel Execution** - Multiple agents work simultaneously within phases
+- **Sequential Phases** - Phases execute in order with validation gates
+- **Rollback on Failure** - Automatic reversion if tests fail
+- **Specification Compliance** - Continuous validation against product-requirements.md/solution-design.md
+- **Pattern Recognition** - Documents implementation patterns discovered
+- **Real-time Updates** - TodoWrite tracking shows live progress
+- **Custom Plans** - Can implement any implementation-plan.md file, not just specs
 
-The project follows a standard TypeScript/Node.js layout with clear separation of concerns:
+<details>
+<summary><strong>View Details</strong></summary>
 
-- **`src/index.ts`**: Entry point that exports CLI runner
-- **`src/bin/`**: Standalone executable commands
-  - `spec.ts`: Standalone spec executable (the-agentic-startup-spec)
-- **`src/cli/`**: CLI command implementations using Commander.js
-  - `index.ts`: CLI setup with Commander.js, registers all commands
-  - `install.ts`: Installation command that launches Ink-based TUI
-  - `uninstall.ts`: Uninstall command with lock file reading
-  - `init.ts`: Initialize DOR/DOD/TASK-DOD templates
-  - `spec.ts`: Create numbered spec directories with TOML output
+Loads implementation-plan.md and executes phase-by-phase with approval gates between phases. Multiple specialist agents work in parallel within each phase when tasks are independent. All changes are validated against acceptance criteria and tests run after each task.
 
-- **`src/core/`**: Core business logic modules
-  - `installer/`: Installation logic and file management
-    - `Installer.ts`: Main installer with rollback mechanism
-    - `LockManager.ts`: Lock file creation, reading, checksum management
-    - `SettingsMerger.ts`: Deep merge settings with backup/restore
-  - `init/`: Template initialization logic
-    - `Initializer.ts`: DOR/DOD/TASK-DOD template processing
-  - `spec/`: Specification directory management
-    - `SpecGenerator.ts`: Auto-incrementing IDs, TOML output, template generation
-  - `types/`: TypeScript type definitions
-    - `config.ts`: Configuration types for all commands
-    - `settings.ts`: Claude settings.json types
-    - `lock.ts`: Lock file format types with v1→v2 migration support
-
-- **`src/ui/`**: Ink-based interactive UI components (React)
-  - `install/`: Installation wizard components
-    - `InstallWizard.tsx`: Main wizard with state machine (6 states)
-    - `ChoiceSelector.tsx`, `FinalConfirmation.tsx`, `Complete.tsx`: UI components
-  - `uninstall/`: Uninstall wizard
-    - `UninstallWizard.tsx`: Lock file reading and confirmation
-  - `shared/`: Reusable UI components
-    - `theme.ts`, `Spinner.tsx`, `ErrorDisplay.tsx`, `Banner.tsx`
-
-- **`tests/`**: Comprehensive test suite
-  - `core/`: Unit tests for all core modules
-  - `ui/`: UI component tests using ink-testing-library
-  - `integration/`: Integration tests for full workflows
-
-- **`docs/`**: Project documentation structure
-  - `domain/`: Business rules, workflows, and domain patterns
-  - `patterns/`: Technical patterns and architectural solutions
-  - `interfaces/`: API contracts and service integrations
-  - `specs/`: Feature specifications (PRD, SDD, PLAN documents)
-
-### Embedded Assets
-
-The application includes all assets as separate files distributed with the npm package:
-- `assets/claude/agents/**/*.md`: Agent definitions (11 roles, 39 activities)
-- `assets/claude/commands/**/*.md`: Slash command definitions (5 commands)
-- `assets/claude/output-styles/the-startup.md`: Custom output style
-- `assets/the-startup/templates/*`: Template files (PRD, BRD, SDD, PLAN, DOR, DOD, TASK-DOD)
-- `assets/the-startup/rules/*`: Agent delegation and cycle pattern rules
-
-### UI Architecture (Ink/React)
-
-The installer uses React components with Ink for terminal UI:
-
-1. **InstallWizard**: Main component orchestrating installation flow
-2. **State Machine**: Manages transitions between installation steps
-   - Intro → StartupPath → ClaudePath → FileSelection → Installing → Complete
-3. **React Components**: Each step is a separate React component
-   - ChoiceSelector: Arrow key navigation menu for path selection
-   - FinalConfirmation: Final confirmation screen with file tree display
-   - Complete: Shows installation success summary
-   - Banner: ASCII art banner display
-   - ErrorDisplay: Handles error display with recovery options
-
-### Installation Flow
-
-1. User runs `the-agentic-startup install` or `npm run dev install`
-2. Ink TUI launches with path selection
-3. Files are selected using interactive tree (or --yes flag for all)
-4. Assets are copied to:
-   - `.claude/agents/` and `.claude/commands/`: Agent and command definitions
-   - `.the-startup/templates/`: Template files
-   - `.the-startup/rules/`: Agent delegation rules
-5. Settings.json is merged with hooks (backup created)
-6. Lock file (v2 format) is created with checksums
-7. Rollback mechanism ensures clean state on any failure
-
-### Lock File Format
-
-The project supports two lock file versions with automatic migration:
-
-**v1 (deprecated)**: Flat map of files
-```json
-{
-  "version": "1.0.0",
-  "files": {
-    "agents/the-chief.md": { "size": 2048, "checksum": "sha256:..." }
-  }
-}
+```mermaid
+flowchart TD
+    A([📄 *implementation-plan.md*]) --> |load| B[**Initialize Plan**<br/>Parse phases & tasks]
+    B --> |approve| C{Phases<br>Remaining?}
+    C --> |yes| D[**Execute Phase N**<br/>⚡ *Parallel agent execution*<br/>✓ *Run tests after each task*]
+    D --> |validate| E[**Phase Review**<br/>Check test results<br/>Review changes]
+    E --> |continue| C
+    C --> |no| F[**Final Validation**<br/>Run full test suite<br/>Verify all requirements]
+    F --> END[✅ **Implementation Complete**]
 ```
 
-**v2 (current)**: Categorized arrays with metadata
-```json
-{
-  "version": "2.0.0",
-  "install_date": "2025-10-06T10:00:00Z",
-  "categories": {
-    "agents": [
-      { "path": "agents/the-chief.md", "size": 2048, "checksum": "sha256:..." }
-    ]
-  }
-}
+</details>
+
+---
+
+#### `/start:analyze <area>`
+
+Discover and document business rules, technical patterns, and system interfaces through iterative exploration.
+
+**Purpose:** Extract organizational knowledge from existing codebase and create reusable documentation
+
+**Usage:**
+
+```bash
+/start:analyze security patterns in authentication
+/start:analyze business rules for user permissions
+/start:analyze technical patterns in our microservices architecture
 ```
 
-Migration happens automatically on read via `LockManager.migrateLockFile()`.
+<details>
+<summary><strong>View Details</strong></summary>
 
-## Key Implementation Details
+Uses cyclical discovery-documentation-review workflow to extract organizational knowledge. Specialist agents explore the codebase to identify patterns, rules, and interfaces across business, technical, security, performance, integration, data, testing, and deployment areas. Documentation is automatically organized into `docs/domain/`, `docs/patterns/`, and `docs/interfaces/` directories.
 
-### File Path Handling
-- Installation paths support `~` expansion for home directory
-- Project-local installation uses `.the-startup` directory
-- Claude configuration expected at `~/.claude`
-- All paths use `path.join()` for cross-platform compatibility
+```mermaid
+flowchart TD
+    A([Analysis Request]) --> |initialize| B[**Scope Definition**<br/>Clarify analysis area<br/>Set cycle plan]
+    B --> |start cycle| C[**Discovery Phase**<br/>⚡ *Specialist analysis*<br/>🔍 *Pattern identification*]
+    C --> |document| D[**Documentation Phase**<br/>📄 *Create domain docs*<br/>📄 *Create pattern docs*<br/>📄 *Create interface docs*]
+    D --> |review| E[**Review & Validation**<br/>Check completeness<br/>Identify gaps]
+    E --> |continue?| F{More Cycles<br>Needed?}
+    F --> |yes| C
+    F --> |no| G[**Final Summary**<br/>📊 *Analysis report*<br/>🎯 *Recommendations*<br/>📋 *Next steps*]
+    G --> END[✅ **Analysis Complete**]
+```
 
-### Placeholder Replacement
-Templates use placeholders that are replaced during installation:
-- `{{STARTUP_PATH}}`: Installation directory path
-- `{{CLAUDE_PATH}}`: Claude configuration directory
+</details>
 
-### Rollback Mechanism
-The installer implements atomic operations with full rollback:
-- Tracks all installed files during installation
-- Creates backup of settings.json before modification
-- On any failure: deletes all installed files, restores settings backup
-- Ensures system is in clean state after failed installation
+---
 
-### Error Handling
-- Custom error types with specific messages (ENOENT, EACCES, ENOSPC)
-- Installation validates paths and provides clear error messages
-- Settings merger handles JSON parse errors gracefully
-- Lock file migration handles both v1 and v2 formats
+#### `/start:refactor <description>`
 
-### Testing Strategy
-- Unit tests for all core modules (Installer, LockManager, SettingsMerger, etc.)
-- Integration tests for full installation/uninstall workflows
-- UI tests using ink-testing-library for React components
-- Migration test from v1 to v2 lock file format
-- Real-file integration tests using actual assets for verification
+Improve code quality while strictly preserving all existing behavior through test-validated incremental changes.
 
-## Distribution
+**Purpose:** Safe, systematic refactoring with automatic rollback on test failures
 
-The project is distributed as an npm package:
-- Published to npm registry
-- Installed globally: `npm install -g the-agentic-startup`
-- Or used via npx: `npx the-agentic-startup install`
-- Assets are included in the npm package (not embedded at build time)
-- Main entry point: `dist/index.js` (built from TypeScript)
-- Standalone executables:
-  - `dist/bin/spec.js` - Available as `the-agentic-startup-spec` command
+**Usage:**
+
+```bash
+/start:refactor Simplify the authentication middleware for better testability
+/start:refactor Improve the WebSocket connection manager
+```
+
+<details>
+<summary><strong>View Details</strong></summary>
+
+Strictly preserves behavior through test-validated incremental changes. All tests must pass before refactoring begins and after each change. Automatic rollback on test failures. For simple refactorings, applies changes directly with continuous validation. For complex refactorings, creates specification documents and defers to `/start:implement` for planned execution.
+
+```mermaid
+flowchart TD
+    A([Refactoring Request]) --> |analyze| B[**Goal Clarification**<br/>Define objectives<br/>Analyze codebase]
+    B --> |assess| C{**Complexity<br>Check**}
+    C --> |simple| D[**Direct Refactoring**<br/>✓ *Run tests first*<br/>🔧 *Apply changes*<br/>✓ *Validate each step*]
+    D --> |review| E[**Specialist Review**<br/>Code quality check<br/>Performance impact]
+    E --> DONE[✅ **Refactoring Complete**]
+    C --> |complex| F[**Create Specification**<br/>📄 *Generate solution-design.md*<br/>📄 *Generate implementation-plan.md*<br/>Document approach]
+    F --> |defer| G[🚀 **Ready for /start:implement**<br/>Execute via planned phases]
+```
+
+</details>
+
+---
+
+#### `/start:init`
+
+Initialize The Agentic Startup framework in your Claude Code environment with interactive setup.
+
+**Purpose:** One-time setup for optimal configuration of output style and statusline
+
+**Usage:**
+
+```bash
+/start:init
+```
+
+<details>
+<summary><strong>View Details</strong></summary>
+
+Activates "The Startup" output style (high-energy, execution-focused communication with parallel agent orchestration mindset) and configures git-aware statusline with real-time command tracking. Interactive setup asks for preferences and confirms each change before applying. Safe to run multiple times.
+
+</details>
+
+---
+
+### Skills (Autonomous)
+
+#### `documentation`
+
+**Activates when:** Patterns, interfaces, or domain rules are discovered
+
+**Trigger terms:** "pattern", "interface", "domain rule", "document", "reusable"
+
+**What it does:**
+
+- Checks for existing documentation (prevents duplicates)
+- Categorizes correctly (domain/patterns/interfaces)
+- Uses appropriate templates
+- Creates cross-references
+- Reports what was documented
+
+**Example activation:**
+
+```
+Agent discovers: "I found a reusable caching pattern using Redis"
+↓
+Documentation skill activates automatically
+↓
+Creates: docs/patterns/caching-strategy.md
+```
+
+**Progressive disclosure:**
+
+- `SKILL.md` - Core documentation logic (~7 KB)
+- `reference.md` - Advanced protocols (~11 KB, loads when needed)
+- `templates/` - Pattern, interface, domain templates (~6 KB each)
+
+---
+
+#### `agent-delegation`
+
+**Activates when:** Task decomposition, agent coordination, or template generation needed
+
+**Trigger terms:** "break down", "launch agents", "FOCUS/EXCLUDE", "parallel", "coordinate"
+
+**What it does:**
+
+- Decomposes complex tasks into activities
+- Determines parallel vs sequential execution
+- Generates FOCUS/EXCLUDE templates for agents
+- Coordinates file creation (prevents collisions)
+- Validates agent responses for scope compliance
+- Generates retry strategies for failed agents
+
+**Example activation:**
+
+```
+User: "Break down this authentication task"
+↓
+Agent-delegation skill activates
+↓
+Outputs:
+- Activity breakdown
+- Dependency analysis
+- Parallel/sequential recommendation
+- FOCUS/EXCLUDE templates for each activity
+```
+
+**Progressive disclosure:**
+
+- `SKILL.md` - Core delegation logic (~24 KB)
+- `reference.md` - Advanced patterns (~19 KB, loads when needed)
+- `examples/` - Real-world scenarios (~38 KB, loads when relevant)
+
+---
+
+### Rules (Operational Workflows)
+
+#### `cycle-pattern.md`
+
+**What:** Discovery → Documentation → Review workflow pattern
+
+**Used by:** All iterative commands (specify, analyze)
+
+**Process:**
+
+1. **Discovery Phase** - Launch parallel specialist agents to research
+2. **Documentation Phase** - Document findings and update main document
+3. **Review Phase** - Present findings to user, get confirmation
+4. **Repeat** - Until work is complete
+
+**Purpose:** Ensures consistent iterative workflow across commands
+
+---
+
+### Templates
+
+Rich templates for structured documentation:
+
+```
+plugins/start/templates/
+├── product-requirements.md      # Product requirements structure
+├── solution-design.md            # Solution design structure
+├── implementation-plan.md        # Implementation plan structure
+├── definition-of-ready.md        # Quality gate
+├── definition-of-done.md         # Quality gate
+└── task-definition-of-done.md   # Task-level quality gate
+```
+
+**Usage:** Automatically used by `/start:specify` when creating specifications
+
+---
+
+### Hooks
+
+#### SessionStart Hook
+
+**When:** Every new Claude Code session
+
+**What it does:**
+
+- Displays welcome banner (first session only)
+- Shows available commands
+- Confirms plugin is active
+
+#### StatuslineComplete Hook
+
+**When:** After statusline updates
+
+**What it does:**
+
+- Adds git branch information
+- Shows current command state
+- Updates dynamically during execution
+
+**Configure via:** `/start:init`
+
+---
+
+## 🏗️ Documentation Structure
+
+The plugin encourages structured knowledge management:
+
+```
+docs/
+├── specs/
+│   └── [3-digit-number]-[feature-name]/
+│       ├── product-requirements.md         # What to build
+│       ├── solution-design.md              # How to build it
+│       └── implementation-plan.md          # Implementation tasks
+│
+├── domain/                                  # Business rules
+│   ├── user-permissions.md
+│   ├── order-workflow.md
+│   └── pricing-rules.md
+│
+├── patterns/                                # Technical patterns
+│   ├── authentication-flow.md
+│   ├── caching-strategy.md
+│   └── error-handling.md
+│
+└── interfaces/                              # External integrations
+    ├── stripe-payments.md
+    ├── sendgrid-webhooks.md
+    └── oauth-providers.md
+```
+
+### Auto-Documentation
+
+The `documentation` skill automatically creates files in the correct location when patterns, interfaces, or domain rules are discovered during:
+
+- Specification creation (`/start:specify`)
+- Implementation (`/start:implement`)
+- Analysis (`/start:analyze`)
+
+### Deduplication
+
+The skill always checks existing documentation before creating new files, preventing duplicates.
+
+---
+
+## 🎨 The Startup Output Style
+
+Included with the plugin, activated via `/start:init`.
+
+### Personality
+
+**The Startup** embodies:
+
+- **The Visionary Leader** - "We'll figure it out" - execute fast, iterate faster
+- **The Rally Captain** - Turn challenges into team victories
+- **The Orchestrator** - Run parallel execution like a conductor
+- **The Pragmatist** - MVP today beats perfect next quarter
+
+### Communication Style
+
+**How The Startup communicates:**
+
+- High energy, high clarity ("Let's deliver this NOW!")
+- Execution mentality ("We've got momentum, let's push!")
+- Celebrate wins ("That's what I'm talking about!")
+- Own failures fast ("That didn't work. Here's the fix.")
+- Always forward motion ("Next, we're tackling...")
+
+### Workflow Patterns
+
+**What you get:**
+
+- Parallel-first mindset (launches multiple agents simultaneously)
+- TodoWrite obsession (tracks every task religiously)
+- "Ask yourself" checkpoints (self-validation at key decision points)
+- Investor update summaries (comprehensive status reports)
+
+### When to Use
+
+**Perfect for:**
+
+- Fast-paced development
+- Complex multi-step workflows
+- Parallel agent coordination
+- High-energy execution
+
+**Maybe not for:**
+
+- Simple single-step tasks
+- Exploratory conversations
+- Learning/tutorial sessions
+
+---
+
+## 🤖 Autonomous Skills in Action
+
+### Example 1: Documentation Skill
+
+**Scenario:** During implementation, an agent discovers a pattern
+
+```
+Agent output: "I implemented a retry mechanism with exponential backoff for API calls"
+```
+
+**What happens automatically:**
+
+1. Documentation skill recognizes "pattern" trigger
+2. Checks `docs/patterns/` for existing retry patterns
+3. Not found → Creates `docs/patterns/api-retry-strategy.md`
+4. Uses pattern template
+5. Reports: "📝 Created docs/patterns/api-retry-strategy.md"
+
+**You didn't have to:** Manually request documentation or specify the path
+
+---
+
+### Example 2: Agent-Delegation Skill
+
+**Scenario:** Complex task needs breakdown
+
+```
+User: "Implement user authentication - break this down into activities"
+```
+
+**What happens automatically:**
+
+1. Agent-delegation skill recognizes "break this down"
+2. Analyzes task complexity
+3. Generates output:
+
+```
+Task: Implement user authentication
+
+Activities:
+1. Analyze security requirements
+2. Design database schema
+3. Create API endpoints
+4. Build login UI
+
+Dependencies: 1 → 2 → (3 & 4 parallel)
+
+Execution: Sequential (1→2), then Parallel (3&4)
+
+Agent Prompts Generated: ✅
+```
+
+**You didn't have to:** Manually create FOCUS/EXCLUDE templates or plan execution strategy
+
+---

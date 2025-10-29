@@ -1,12 +1,12 @@
 {
-  "name": "the-startup",
+  "name": "skogai-team",
   "owner": {
     "name": "Rudolf S."
   },
   "metadata": {
     "description": "Comprehensive agentic framework for Claude Code",
     "version": "2.0.0",
-    "homepage": "https://github.com/rsmdt/the-startup"
+    "homepage": "https://github.com/skogai/team"
   },
   "plugins": [
     {

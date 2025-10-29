@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Complete statusline script for Claude Code - Shell implementation
-# Replicates the functionality of the Go implementation from rsmdt/the-startup
+# Replicates the functionality of the Go implementation from skogai/team
 #
 # Features:
 # - Shows current directory (with ~ for home)
